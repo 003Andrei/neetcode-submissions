@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        // types -> parenthesis, curly bracket, close bracket
+        if (s.length() % 2 == 1) return false; 
+        stack<char> st; 
+        for (char c: s){
+            if (c == '(' || c == '{' || c == '['){
+                st.push(c);
+            }
+            else {
+                if  (st.empty()) return false;
+                else if (st.top() == '(' && c == ')') st.pop();
+                else if (st.top() == '{' && c == '}') st.pop();
+                else if (st.top() == '[' && c == ']') st.pop();
+                else return false; 
+            }
+            
+
+        }
+        if (st.size() == 0) return true;
+        return false; 
+    }
+};
